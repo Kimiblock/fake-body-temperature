@@ -8,7 +8,10 @@ if [ ! $2 ]; then
 else
     end=$2
 fi
+i=0
 while true; do
+    day=`date -d "+${i} day" +%Y-%m-%d`
+    i=`expr ${i} + 1`
     temp=`seq ${start} .1 37.3 | shuf | head -n1`
     while [[ ${temp} >  '37.3' ]]; do
         temp=`seq 36.3 .1 37.3 | shuf | head -n1`
@@ -16,5 +19,5 @@ while true; do
     while [[ ${temp} < '36.3' ]]; do
         temp=`seq 36.3 .1 37.3 | shuf | head -n1`
     done
-    echo ${temp}
+    echo ${day} ${temp}
 done
